@@ -16,8 +16,9 @@ numberKeysBtns.forEach(button => {
         // if(finished){
         //     clean();
         // }
-        if(button.textContent != "." && button.textContent != "="){   
-            if(resultOutput.textContent == "0"){
+        if(button.textContent != "="){   
+            if(resultOutput.textContent == "0" || finished){
+                clean();
                 resultOutput.textContent = button.textContent;
             } else {
                 resultOutput.textContent += button.textContent;
@@ -42,11 +43,8 @@ function clean(){
 }
 
 clearBtn.addEventListener("click", () => {
-    num1 = undefined;
-    num2 = undefined;
-    operator = undefined;
+    clean();
     resultOutput.textContent = "0";
-    finished = false;
 });
 
 opKeysBtns.forEach(button => {
