@@ -21,8 +21,14 @@ numberKeysBtns.forEach(button => {
                 resultOutput.textContent = button.textContent;
             } else {
                 resultOutput.textContent += button.textContent;
+                if(operator != undefined){
+                    const expression = resultOutput.textContent.split(" ");
+                    num1 = expression[0];
+                    num2 = expression[2];
+                } 
             }
         }
+        
         
     })
 });
@@ -52,13 +58,10 @@ opKeysBtns.forEach(button => {
             //console.log(`num1: ${num1}\nnum2: ${num2}\noperator: ${operator}`);
             console.log("chega aqui");
         } else if(num1 != undefined && num2 != undefined){
-            const expression = resultOutput.textContent.split(" ");
-            num1 = expression[0];
-            num2 = expression[2];
-            console.log(`expression: ${expression}\nnum1: ${num1}\nnum2: ${num2}\noperator: ${operator}`);
             if(num1 != undefined && num2 != undefined && operator != undefined){
                 operate(operator, num1, num2);
-                resultOutput.textContent = result;
+                resultOutput.textContent = result + ` ${button.textContent} `;
+                operator = button.textContent;
                 console.log(`Result: ${result}`);
                 finished = true;
             }
@@ -68,10 +71,10 @@ opKeysBtns.forEach(button => {
 });
 
 equalsBtn.addEventListener("click", () => {
-    const expression = resultOutput.textContent.split(" ");
-    num1 = expression[0];
-    num2 = expression[2];
-    console.log(`expression: ${expression}\nnum1: ${num1}\nnum2: ${num2}\noperator: ${operator}`);
+    // const expression = resultOutput.textContent.split(" ");
+    // num1 = expression[0];
+    // num2 = expression[2];
+    //console.log(`expression: ${expression}\nnum1: ${num1}\nnum2: ${num2}\noperator: ${operator}`);
     if(num1 != undefined && num2 != undefined && operator != undefined){
         operate(operator, num1, num2);
         resultOutput.textContent = result;
